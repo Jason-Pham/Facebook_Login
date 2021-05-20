@@ -12,7 +12,7 @@ public class ScreenshotHelper {
     private static String separator = System.getProperty("file.separator");
     private static String directory = System.getProperty("user.dir")
             + separator + "target"
-            + separator + "Amazon-reports"
+            + separator + "Facebook-reports"
             + separator + "screenshots"
             + separator;
 
