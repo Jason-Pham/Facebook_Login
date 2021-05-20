@@ -77,7 +77,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.14.0</version>
+            <version>3.141.59</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -102,7 +102,7 @@
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>2.0.2</version>
+            <version>1.0.b2</version>
         </dependency>
         <dependency>
             <groupId>xerces</groupId>
@@ -164,7 +164,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.8.1</version>
         </dependency>
-        <!--Passay to generate password-->
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
@@ -191,6 +190,17 @@
             <artifactId>surefire</artifactId>
             <version>${surefire.version}</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-remote-driver</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 </project>

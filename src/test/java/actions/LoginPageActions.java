@@ -1,5 +1,6 @@
 package actions;
 
+import helpers.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +12,7 @@ import static helpers.Utils.sendKeys;
 public class LoginPageActions extends BaseActions {
     public void Fill(String data_test, String value) throws IOException {
         WebElement input_identifier = baseActionsDriver.findElement(By.xpath("//input[@data-testid='"+data_test+"']"));
-        sendKeys(input_identifier, value);
+        sendKeys(input_identifier, Utils.getDataFromJson(value));
     }
 
     public void Click(String data_test) throws IOException {

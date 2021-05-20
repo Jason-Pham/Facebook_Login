@@ -2,12 +2,16 @@ package helpers;
 
 import com.vimalselvam.cucumber.listener.Reporter;
 import helpers.ReportHelper.ScreenshotHelper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,9 +19,9 @@ import java.util.List;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class Utils {
-    public static float totalPrice = 0;
-    public static int totalItem = 0;
+
     public static long waitTime = 15;
+    private static String DataJson = "src/main/java/helpers/TestData/DataTest.json";
 
     public static void captureScreenshot() throws IOException {
         Reporter.addScreenCaptureFromPath(ScreenshotHelper.takeScreenshot(Hooks.driver,
@@ -91,5 +95,18 @@ public class Utils {
     public static void waitForPageToLoad() {
         new WebDriverWait(Hooks.driver, waitTime + 15).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public static String getDataFromJson(String key) {
+        String value = "";
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(new FileReader(DataJson));
+            JSONObject jsonObject = (JSONObject) obj;
+            value = (String) jsonObject.get(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return value;
     }
 }
