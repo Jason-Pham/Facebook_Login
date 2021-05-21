@@ -17,18 +17,18 @@ public class LoginPageSteps extends BaseSteps {
             baseStepsDriver.navigate().to(Utils.getDataFromJson("facebook_prod"));
     }
 
-    @And("^User fill \"([^\"]*)\" with \"([^\"]*)\"$")
+    @And("^User fill \"([^\"]*)\" with \"([^\"]*)\" on login page$")
     public void userFill(String data_testid, String value) throws IOException {
         loginPageActions.Fill(data_testid, value);
     }
 
-    @And("^User click on the \"([^\"]*)\" element$")
+    @And("^User click on the \"([^\"]*)\" element on login page$")
     public void userClick(String data_testid) throws IOException {
         loginPageActions.Click(data_testid);
     }
 
     @Then("^User should be on the \"([^\"]*)\" page$")
     public void userShouldBeOnThe(String page) {
-        Assert.assertEquals(loginPageActions.GetCurrentUrl(), page);
+        Assert.assertTrue(loginPageActions.GetCurrentUrl().contains(page));
     }
 }

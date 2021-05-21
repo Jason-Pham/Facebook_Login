@@ -10,13 +10,18 @@ import static helpers.Utils.click;
 import static helpers.Utils.sendKeys;
 
 public class LandingPageActions extends BaseActions {
-    public void Fill(String data_test, String value) throws IOException {
-        WebElement input_identifier = baseActionsDriver.findElement(By.xpath("//input[@data-testid='"+data_test+"']"));
+    public void FillOnText(String value) throws IOException {
+        WebElement input_identifier = baseActionsDriver.findElement(By.xpath("(//*[@data-block = 'true'])[last()]"));
         sendKeys(input_identifier, value);
     }
 
-    public void Click(String data_test) throws IOException {
-        WebElement input_identifier = baseActionsDriver.findElement(By.xpath("//*[@data-testid='"+data_test+"']"));
+    public void ClickOnText(String data_test) throws IOException, InterruptedException {
+        WebElement input_identifier = baseActionsDriver.findElement(By.xpath("(//*[contains(text(), \""+data_test+"\")])[1]"));
+        click(input_identifier);
+    }
+
+    public void ClickOnSymbol(String data_test) throws IOException {
+        WebElement input_identifier = baseActionsDriver.findElement(By.xpath("//*[@aria-label = '"+data_test+"']"));
         click(input_identifier);
     }
 

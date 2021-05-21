@@ -81,7 +81,7 @@ public class Utils {
     public static void sendKeys(WebElement element, String keys) throws IOException {
         try {
             waitForElement(element, waitTime);
-            clear(element);
+//            clear(element);
 
             element.sendKeys(keys);
             captureScreenshot();
