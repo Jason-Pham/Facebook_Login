@@ -14,7 +14,7 @@ The runners is in this folder:
 Currently there is just one basic test runner.
 
 ### Some notes for this framework
-1. This framework required Java 8+ and Chrome to run. It can work on Mac, Windows, Linux as long as it has Java and Chrome browser
+1. This framework required Java 11+ and Chrome to run. It can work on Mac, Windows, Linux as long as it has Java and Chrome browser
 2. There is no web driver attached, the framework will pickup the best Chromedriver version for your Chrome.
 
 ## Report
