@@ -15,7 +15,7 @@ public class LandingPageSteps extends BaseSteps {
     }
 
     @And("^User click on the \"([^\"]*)\" text element on landing page$")
-    public void userClickOnText(String data_testid) throws IOException, InterruptedException {
+    public void userClickOnText(String data_testid) throws IOException {
         landingPageActions.ClickOnText(data_testid);
     }
 
@@ -27,5 +27,15 @@ public class LandingPageSteps extends BaseSteps {
     @And("^User fill the post with \"([^\"]*)\" on landing page$")
     public void userFillThePostWithOnLandingPage(String postValue) throws Throwable {
         landingPageActions.FillOnText(postValue);
+    }
+
+    @Then("^User should see the new \"([^\"]*)\" status on landing page$")
+    public void userShouldSeeTheNewStatusOnLandingPage(String status) throws Throwable {
+        landingPageActions.GetNewStatus(status);
+    }
+
+    @And("^User click on the post button on landing page$")
+    public void userClickOnThePostButtonOnLandingPage() throws IOException {
+        landingPageActions.ClickOnPostButton();
     }
 }

@@ -12,7 +12,8 @@ Feature: Facebook login
     When User click on the "Home" symbol element on landing page
     And User click on the "What's on your mind, " text element on landing page
     And User fill the post with "Hello" on landing page
-    And User click on the "Post" text element on landing page
+    And User click on the post button on landing page
+    Then User should see the new "Hello" status on landing page
     Examples:
       | Email       | Password       |
       | user1_email | user1_password |
