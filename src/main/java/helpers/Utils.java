@@ -5,9 +5,7 @@ import helpers.ReportHelper.ScreenshotHelper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -15,6 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.Function;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
@@ -55,6 +54,7 @@ public class Utils {
 
     public static void click(WebElement element) throws IOException {
         try {
+//            waitForPageToLoad();
             waitForElement(element, waitTime);
             element.click();
 
@@ -93,8 +93,18 @@ public class Utils {
     }
 
     public static void waitForPageToLoad() {
-        new WebDriverWait(Hooks.driver, waitTime + 15).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        while (true) {
+            if (new WebDriverWait(Hooks.driver,
+                    waitTime + 15).until(
+                    new Function<WebDriver, Boolean>() {
+                        @Override
+                        public Boolean apply(WebDriver webDriver) {
+                            return ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete");
+                        }
+                    })) {
+                break;
+            }
+        }
     }
 
     public static String getDataFromJson(String key) {
@@ -108,5 +118,27 @@ public class Utils {
             e.printStackTrace();
         }
         return value;
+    }
+
+    public static boolean elementExists(String e_xpath) throws IOException {
+        try {
+            return Hooks.driver.findElements(By.xpath(e_xpath)).isEmpty();
+        } catch (NullPointerException | WebDriverException e) {
+            captureScreenshot();
+            Reporter.addStepLog("Element is exists: ");
+            Assert.fail();
+        }
+
+        return false;
+    }
+
+    public static void reloadPage() throws IOException {
+        try {
+            Hooks.driver.navigate().refresh();
+        } catch (NullPointerException | WebDriverException e) {
+            captureScreenshot();
+            Reporter.addStepLog("Reload page failed: ");
+            Assert.fail();
+        }
     }
 }

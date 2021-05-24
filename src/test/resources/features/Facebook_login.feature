@@ -13,7 +13,12 @@ Feature: Facebook login
     And User click on the "What's on your mind, " text element on landing page
     And User fill the post with "Hello" on landing page
     And User click on the post button on landing page
+    And User wait for landing page loaded
     Then User should see the new "Hello" status on landing page
+#    And User click on the profile link
+#
+#    When User wait for profile page loaded
+#    Then User should see the new "Hello" status on profile page
     Examples:
       | Email       | Password       |
       | user1_email | user1_password |
