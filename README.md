@@ -1,5 +1,3 @@
-# Facebook_Login
-
 # Facebook web app test
 This is a framework to test Facebook web app page. It can help manual tester or anyone who need regression test for basic work flow of this social service.
 
